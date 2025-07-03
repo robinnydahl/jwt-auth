@@ -100,14 +100,13 @@ return [
     | This defines the refresh window, during which the user can refresh their token
     | before re-authentication is required.
     |
-    | By default, each refresh will issue a new "iat" (issued at) timestamp, extending
-    | the refresh period from the most recent refresh. This results in a rolling refresh
-    | expiry, where the refresh window resets with each token refresh.
+    | By default, a refresh will NOT issue a new "iat" (issued at) timestamp. If changed
+    | to true, each refresh will issue a new "iat" timestamp, extending the refresh
+    | period from the most recent refresh. This results in a rolling refresh
     |
-    | To retain a fixed refresh window from the original token creation (i.e., the behavior
-    | prior to version 2.5.0), set "refresh_iat" to false. With this setting, the refresh
-    | window will remain based on the original "iat" of the initial token issued, regardless
-    | of subsequent refreshes.
+    | To retain a fluid refresh window from the last refresh action (i.e., the behavior between
+    | version 2.5.0 and 2.8.2), set "refresh_iat" to true. With this setting, the refresh
+    | window will renew with each subsequent refresh.
     |
     | The refresh ttl defaults to 2 weeks.
     |
