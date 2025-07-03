@@ -57,7 +57,7 @@ class Manager
      *
      * @var bool
      */
-    protected $refreshIat = true;
+    protected $refreshIat = false;
 
     /**
      * the persistent claims.

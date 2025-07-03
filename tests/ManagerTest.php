@@ -203,6 +203,7 @@ class ManagerTest extends AbstractTestCase
         $buildRefreshClaimsMethod = $managerClass->getMethod('buildRefreshClaims');
         $buildRefreshClaimsMethod->setAccessible(true);
         $managerInstance = new Manager($this->jwt, $this->blacklist, $this->factory);
+        $managerInstance->setRefreshIat(true);
 
         $firstResult = $buildRefreshClaimsMethod->invokeArgs($managerInstance, [$payload]);
         Carbon::setTestNow(Carbon::now()->addMinutes(2));
@@ -239,7 +240,6 @@ class ManagerTest extends AbstractTestCase
         $buildRefreshClaimsMethod = $managerClass->getMethod('buildRefreshClaims');
         $buildRefreshClaimsMethod->setAccessible(true);
         $managerInstance = new Manager($this->jwt, $this->blacklist, $this->factory);
-        $managerInstance->setRefreshIat(false);
 
         $firstResult = $buildRefreshClaimsMethod->invokeArgs($managerInstance, [$payload]);
         Carbon::setTestNow(Carbon::now()->addMinutes(2));
